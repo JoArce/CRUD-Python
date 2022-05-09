@@ -8,7 +8,7 @@ class UsuarioDao:
     _SELECT = 'SELECT * FROM usuario ORDER BY id_usuario'
     _INSERTAR = 'INSERT INTO usuario(username, password) VALUES (%s, %s)'
     _ACTUALIZAR = 'UPDATE usuario SET username=%s, password=%s WHERE id_usuario=%s'
-    _ELIMINAR = 'DELET FROM usuario WHERE id_usuario=%s'
+    _ELIMINAR = 'DELETE FROM usuario WHERE id_usuario=%s'
 
 
     @classmethod
@@ -29,7 +29,7 @@ class UsuarioDao:
         with CursorDelPool() as cursor:
             log.debug(f'Usuario a insertar : {usuario}')
             valores = (usuario.username, usuario.password)
-            cursor.excecute(cls._INSERTAR, valores)
+            cursor.execute(cls._INSERTAR, valores)
             return cursor.rowcount
 
     @classmethod
